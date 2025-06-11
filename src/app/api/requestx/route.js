@@ -112,6 +112,8 @@ export async function GET(request) {
             tweet_media: tweet_media,
             tweet_threadscount: tweet_threadscount,
             tweet_data: JSON.stringify(data),
+            is_hidden: 0,
+            post_at : new Date(first_tweet.created_at),
             created_at: new Date()
         }
 

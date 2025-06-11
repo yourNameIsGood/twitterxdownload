@@ -5,14 +5,64 @@ import { parseTweetData } from "@/lib/parser";
 import ShareButtons from "@/app/components/ui/ShareButtons";
 import Explore from "@/app/components/ui/Explore";
 
+let tweetData = null;
+async function getTweetData(slug) {
+    if(tweetData){
+        return tweetData;
+    }
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const detailResp = await fetch(`${baseUrl}/api/requestdb?action=detail&tweet_id=${slug}`);
+    const data = await detailResp.json();
+    tweetData = data.data[0];
+    return tweetData;
+}
+
+export async function generateMetadata({ params }) {
+    const tweet = await getTweetData(params.slug);
+
+    const title = tweet.tweet_text.substring(0, 50);
+    const description = tweet.tweet_text.substring(0, 150);
+
+    let image = "https://twitterxdownload.com/images/og.png";
+    // 如果 tweet.tweet_media 存在,则使用 tweet.tweet_media 的第一个图片
+    // 获取推文数据
+    const data = JSON.parse(tweet.tweet_data);
+    const resultTweet = data.data.threaded_conversation_with_injections_v2.instructions[0].entries[0].content.itemContent.tweet_results.result;
+    // 获取主推文数据
+    const first_tweet = resultTweet.legacy || resultTweet.tweet.legacy;
+    if (first_tweet.extended_entities?.media) {
+        image = first_tweet.extended_entities.media[0].media_url_https;
+    }
+    
+    return {
+      title: title,
+      description: description,
+      openGraph: {
+        title: title,
+        description: description,
+        type: 'website',
+        url: 'https://twitterxdownload.com',
+        siteName: 'TwitterXDownload',
+        images: [{
+          url: image
+        }]
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@twitterxdownload',
+        title: title,
+        description: description,
+        images: [image]
+      }
+    }
+}
+
 export default async function TweetDetail({params}) {
     const {slug, locale='en'} = params;
     const t = function(key){
         return getTranslation(locale, key);
     }
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const detailResp = await fetch(`${baseUrl}/api/requestdb?action=detail&tweet_id=${slug}`).then(res => res.json());
-    const tweet = detailResp.data[0];
+    const tweet = await getTweetData(slug);
 
     const linkConvert = (text) => {
         // 替换链接
