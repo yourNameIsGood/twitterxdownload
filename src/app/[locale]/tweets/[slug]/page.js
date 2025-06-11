@@ -17,11 +17,17 @@ async function getTweetData(slug) {
     return tweetData;
 }
 
+function deleteAllUrl(text){
+    return text.replace(/https?:\/\/[^\s]+/g, '');
+}
+
 export async function generateMetadata({ params }) {
     const tweet = await getTweetData(params.slug);
 
-    const title = tweet.tweet_text.substring(0, 50);
-    const description = tweet.tweet_text.substring(0, 150);
+    const tweet_text = deleteAllUrl(tweet.tweet_text);
+
+    const title = tweet_text.substring(0, 50);
+    const description = tweet_text.substring(0, 150);
 
     let image = "https://twitterxdownload.com/images/og.png";
     // 如果 tweet.tweet_media 存在,则使用 tweet.tweet_media 的第一个图片
