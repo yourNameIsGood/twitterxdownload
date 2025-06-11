@@ -91,7 +91,6 @@ export default function Downloader({ params: { locale } }) {
         for(let i = 0; i < originTweets.length; i++){
             const tweet = originTweets[i];
             const translatedText = await translate(tweet.text, targetLang);
-            console.log(translatedText);
 
             tempTweets[i].tweet_text = translatedText;
         }

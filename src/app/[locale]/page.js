@@ -28,7 +28,6 @@ export default function Home({ params: { locale } }) {
       <div className="page-container">
         <div className="section">
           <Hero locale={locale} remainApiCount={remainApiCount} onDownload={(url) => {
-            console.log(url);
             router.push(`/downloader?url=${url}`);
           }} />
         </div>

@@ -82,7 +82,6 @@ export default function Tweets({ params: { locale } }) {
                         onChange={(e) => setName(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                console.log('Enter');
                                 setShouldSearch(true);
                             }
                         }}
@@ -100,7 +99,6 @@ export default function Tweets({ params: { locale } }) {
                         onChange={(e) => setScreenName(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                console.log('Enter');
                                 setShouldSearch(true);
                             }
                         }}
@@ -118,7 +116,6 @@ export default function Tweets({ params: { locale } }) {
                         onChange={(e) => setText(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                console.log('Enter');
                                 setShouldSearch(true);
                             }
                         }}
@@ -161,7 +158,6 @@ export default function Tweets({ params: { locale } }) {
                                 defaultSelectedKeys={["all"]}
                                 value={content_type}
                                 onChange={(e) => {
-                                    // console.log(e.target.value);
                                     setContentType(e.target.value);
                                     setShouldSearch(true);
                                 }}

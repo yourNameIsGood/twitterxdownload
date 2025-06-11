@@ -469,7 +469,7 @@ class XAPI {
     }
 
     async uploadMedia(mediaSource) {
-        const url = 'api/mediaupload.php';
+        const url = 'api/x/mediaupload';
                 
         // 处理媒体源，可能是File对象、URL字符串或base64字符串
         let mediaFile;
@@ -634,7 +634,7 @@ class XAPI {
             },
             // post data to twitter api
             send: async () => {
-                const url = 'api/tweets.php';
+                const url = '/api/x/tweet';
                 const options = {
                     method: 'POST',
                     headers: {
