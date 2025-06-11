@@ -17,8 +17,8 @@ BTW: also a best project for Developers to learn Next.js, HeroUI, TailwindCSS, M
 - 🌐 **Translation & Republishing**: One-click translation and republishing of tweets - an essential tool for Twitter thread marketing
 - 🌍 **Multi-language Support**: Available in 12 languages for global accessibility
 - 📦 **Self Hosted**:
-  - 💰 **AdSense Ready**: Built-in content modules optimized for AdSense approval
-  - 📈 **SEO Optimized**: Tweet aggregation platform with SEO-friendly features
+  - 💰 **AdSense Ready**: optimized for AdSense approval
+  - 📈 **SEO Optimized**: optimized for SEO
 
 ## 🚀 Self Hosted Guide
 
