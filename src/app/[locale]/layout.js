@@ -9,13 +9,42 @@ import MyFooter from '../components/ui/MyFooter';
 
 
 export const metadata = {
-    title: {
-      default: 'TwitterXDownload', // 当页面没有指定title时使用的默认标题
-      template: '%s | TwitterXDownload' // 当页面指定了title时,会用页面的title替换 %s
-      // 例如: 页面设置 title: "Home" 
-      // 最终显示: "Home | TwitterXDownload"
-    },
-    description: 'Download TwitterX videos and images'
+  title: {
+    default: 'TwitterXDownload - Free Twitter Video Downloader',
+    template: '%s | TwitterXDownload'
+  },
+  description: 'Download Twitter videos and media content for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Saver. Twitter X Download.',
+  keywords: 'twitter downloader, x video downloader, twitter video download, x.com downloader',
+  authors: [{ name: 'TwitterXDownload' }],
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  canonical: 'https://twitterxdownload.com/',
+  openGraph: {
+    title: 'TwitterXDownload - Free Twitter Video Downloader',
+    description: 'Download Twitter videos and media content for free. No registration required.',
+    type: 'website',
+    url: 'https://twitterxdownload.com',
+    siteName: 'TwitterXDownload',
+    images: [{
+      url: 'https://twitterxdownload.com/images/og.png'
+    }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@twitterxdownload',
+    title: 'TwitterXDownload - Free Twitter Video Downloader',
+    description: 'Download Twitter videos and media content for free. No registration required.',
+    images: ['https://twitterxdownload.com/images/og.png']
+  },
+  icons: {
+    icon: [
+      { url: '/images/favicon.ico' },
+      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/images/logo.png', sizes: '180x180' }
+    ]
+  }
 };
 
 export default function RootLayout({ children, params }) {

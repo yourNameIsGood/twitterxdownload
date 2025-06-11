@@ -22,7 +22,7 @@ export default function MyNavbar({ locale = 'en' }) {
     }}>
       <NavbarBrand>
         <Link href="/" className="text-foreground">
-          <Image src="/logo.png" alt="TwitterXDownload" width={32} height={32} />
+          <Image src="/images/logo.png" alt="TwitterXDownload" width={32} height={32} />
           <p className="font-bold text-inherit mx-3 text-2xl">
             {t('TwitterXDownload')}
           </p>
