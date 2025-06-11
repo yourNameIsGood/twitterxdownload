@@ -5,15 +5,11 @@ import { parseTweetData } from "@/lib/parser";
 import ShareButtons from "@/app/components/ui/ShareButtons";
 import Explore from "@/app/components/ui/Explore";
 
-let tweetData = null;
 async function getTweetData(slug) {
-    if(tweetData){
-        return tweetData;
-    }
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const detailResp = await fetch(`${baseUrl}/api/requestdb?action=detail&tweet_id=${slug}`);
     const data = await detailResp.json();
-    tweetData = data.data[0];
+    const tweetData = data.data[0];
     return tweetData;
 }
 
