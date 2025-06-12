@@ -9,10 +9,6 @@
  * 许可证: GPL v3.0
  */
 
-if (typeof(module) !== 'undefined' && typeof(exports) !== 'undefined') {
-    module.exports = OAuth;
-}
-
 /**
  * Constructor
  * @param {Object} opts consumer key and secret
