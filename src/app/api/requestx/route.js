@@ -122,7 +122,7 @@ export async function GET(request) {
         return Response.json({
             success: true,
             message: 'Tweet fetched from API',
-            data: data
+            data:respData.data
         });
 
     } catch (error) {
