@@ -20,7 +20,6 @@ export async function GET(request) {
     const action = searchParams.get('action');
 
     const baseFilter = {
-        is_hidden: { $ne: 1 },
         screen_name: { $nin: HiddenScreenNames }
     };
 
@@ -31,8 +30,8 @@ export async function GET(request) {
         {
           $facet: {
             data: [
-              { $match: { ...baseFilter, tweet_media: { $ne: null, $ne: '' } } },
-              { $sort: { created_at: -1 } }, 
+              { $match: { ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } } },
+              { $sort: { post_at: -1 } }, 
               { $limit: 15 }
             ],
             count: [
