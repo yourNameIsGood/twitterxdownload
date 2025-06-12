@@ -113,9 +113,16 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             <CardBody className="text-small text-default-400 pb-0">
                 <pre className={`whitespace-pre-wrap ${enableEdit ? "border-[1px] border-primary p-2 rounded-md text-foreground" : ""}`} contentEditable={enableEdit} onInput={(e) => {
                     setTextLength(e.target.innerText.length);
-                }} onBlur={(e) => {
+                }} 
+                onBlur={(e) => {
                     handleUpdateText(e.target.innerText);
-                }} suppressContentEditableWarning={true}>{tweet.tweet_text}</pre>
+                }} 
+                onPaste={(e) => {
+                    e.preventDefault();
+                    const text = e.clipboardData.getData('text/plain');
+                    document.execCommand('insertText', false, text);
+                }}
+                suppressContentEditableWarning={true}>{tweet.tweet_text}</pre>
                 {enableEdit && <div className='text-small text-default-400 text-right'>{textLength} / 280</div>}
                 {/* 图片显示逻辑 */}
                 {tweet.tweet_media && tweet.tweet_media.length > 0 && (
