@@ -46,7 +46,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             const confirmed = await ConfirmModal.show({
                 title: t('Warning'),
                 description: <>
-                    <div className="text-small text-default-400">{t('Hide this tweet from homepage')}</div>
+                    <div className="text-small text-default-400">{t('Hide this tweet from homepage?')}</div>
                     <Input onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
                 </>,
                 cancelText: t('Cancel'),
@@ -55,7 +55,26 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             if(!confirmed) return;
     
             if(tempAdminPwd.trim() !== ''){
-                const res = await fetch(`/api/report?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
+                const res = await fetch(`/api/tweet/report?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
+                if(res.ok){
+                    if(window)window.location.reload();
+                }
+            }
+        }else if(e === 'delete'){
+            let tempAdminPwd = '';
+            const confirmed = await ConfirmModal.show({
+                title: t('Warning'),
+                description: <>
+                    <div className="text-small text-default-400">{t('Delete this tweet from database?')}</div>
+                    <Input onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
+                </>,
+                cancelText: t('Cancel'),
+                confirmText: t('Confirm')
+            });
+            if(!confirmed) return;
+    
+            if(tempAdminPwd.trim() !== ''){
+                const res = await fetch(`/api/tweet/delete?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
                 if(res.ok){
                     if(window)window.location.reload();
                 }
@@ -196,7 +215,8 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Static Actions" onAction={handleActions}>
-                                <DropdownItem key="report">{t('Hide this tweet from homepage')}</DropdownItem>
+                                <DropdownItem key="report">{t('Hide this tweet')}</DropdownItem>
+                                <DropdownItem key="delete">{t('Delete this tweet')}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>

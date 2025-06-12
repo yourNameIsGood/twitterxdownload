@@ -73,5 +73,8 @@
   "All tweets published successfully": "All tweets published successfully",
   "Friends Link": "Friends Link",
   "Please enter the admin password": "Please enter the admin password",
-  "Hide this tweet from homepage": "Hide this tweet from homepage"
+  "Hide this tweet from homepage?": "Hide this tweet from homepage?",
+  "Delete this tweet from database?": "Delete this tweet from database?",
+  "Hide this tweet": "Hide this tweet",
+  "Delete this tweet": "Delete this tweet"
 } 

@@ -71,5 +71,8 @@
   "All tweets published successfully": "所有推文发布成功",
   "Friends Link": "友情链接",
   "Please enter the admin password": "请输入管理员密码",
-  "Hide this tweet from homepage": "在首页隐藏此推文"
+  "Hide this tweet from homepage?": "确定在首页隐藏此推文吗？",
+  "Delete this tweet from database?": "确定从数据库删除此推文吗？",
+  "Hide this tweet": "隐藏此推文",
+  "Delete this tweet": "删除此推文"
 }

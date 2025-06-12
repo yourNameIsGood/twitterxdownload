@@ -73,5 +73,8 @@
   "All tweets published successfully": "Tutti i tweet pubblicati con successo",
   "Friends Link": "Link degli Amici",
   "Please enter the admin password": "Inserisci la password dell'amministratore",
-  "Hide this tweet from homepage": "Nascondi questo tweet dalla home"
+  "Hide this tweet from homepage?": "Nascondi questo tweet dalla home?",
+  "Delete this tweet from database?": "Elimina questo tweet dalla base di dati?",
+  "Hide this tweet": "Nascondi questo tweet",
+  "Delete this tweet": "Elimina questo tweet"
 } 

@@ -73,5 +73,8 @@
   "All tweets published successfully": "모든 트윗이 성공적으로 게시되었습니다",
   "Friends Link": "친구 링크",
   "Please enter the admin password": "관리자 비밀번호를 입력해주세요",
-  "Hide this tweet from homepage": "홈페이지에서 이 트윗을 숨기기"
+  "Hide this tweet from homepage?": "홈페이지에서 이 트윗을 숨기기?",
+  "Delete this tweet from database?": "데이터베이스에서 이 트윗을 삭제하기?",
+  "Hide this tweet": "이 트윗을 숨기기",
+  "Delete this tweet": "이 트윗을 삭제하기"
 } 

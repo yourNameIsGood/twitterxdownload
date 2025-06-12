@@ -73,5 +73,8 @@
   "All tweets published successfully": "ทวีตทั้งหมดได้ถูกเผยแพร่สำเร็จ",
   "Friends Link": "ลิงก์เพื่อน",
   "Please enter the admin password": "กรุณากรอกรหัสผ่านผู้ดูแลระบบ",
-  "Hide this tweet from homepage": "ซ่อนทวีตนี้จากหน้าแรก"
+  "Hide this tweet from homepage?": "ซ่อนทวีตนี้จากหน้าแรก?",
+  "Delete this tweet from database?": "ลบทวีตนี้จากฐานข้อมูล?",
+  "Hide this tweet": "ซ่อนทวีต",
+  "Delete this tweet": "ลบทวีต"
 } 

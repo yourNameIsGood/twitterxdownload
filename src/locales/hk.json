@@ -72,5 +72,8 @@
   "All tweets published successfully": "所有推文發佈成功",
   "Friends Link": "友情鏈接",
   "Please enter the admin password": "請輸入管理員密碼",
-  "Hide this tweet from homepage": "在首頁隱藏此推文"
+  "Hide this tweet from homepage?": "確定在首頁隱藏此推文？",
+  "Delete this tweet from database?": "確定從資料庫刪除此推文？",
+  "Hide this tweet": "隱藏此推文",
+  "Delete this tweet": "刪除此推文"
 }

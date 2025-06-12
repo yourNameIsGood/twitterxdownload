@@ -73,5 +73,8 @@
   "All tweets published successfully": "すべてのツイートが正常に投稿されました",
   "Friends Link": "友達リンク",
   "Please enter the admin password": "管理者パスワードを入力してください",
-  "Hide this tweet from homepage": "ホームページからこのツイートを非表示にする"
+  "Hide this tweet from homepage?": "ホームページからこのツイートを非表示にする？",
+  "Delete this tweet from database?": "データベースからこのツイートを削除する？",
+  "Hide this tweet": "このツイートを非表示にする",
+  "Delete this tweet": "このツイートを削除する"
 } 
