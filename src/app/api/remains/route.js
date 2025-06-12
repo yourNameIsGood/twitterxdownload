@@ -2,7 +2,6 @@ export async function GET() {
   try {
     const response = await fetch('https://api.twitterxdownload.com/api/remains', {
       method: 'GET',
-      cache: 'no-store'
     });
 
     if (!response.ok) {
@@ -23,3 +22,5 @@ export async function GET() {
     }, { status: 500 });
   }
 }
+
+export const dynamic = 'force-dynamic';

@@ -31,7 +31,7 @@ export async function GET(request) {
           $facet: {
             data: [
               { $match: { ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } } },
-              { $sort: { post_at: -1 } }, 
+              { $sort: { created_at: -1 } }, 
               { $limit: 15 }
             ],
             count: [
