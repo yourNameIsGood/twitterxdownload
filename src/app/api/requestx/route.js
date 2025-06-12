@@ -31,7 +31,7 @@ export async function GET(request) {
             throw new Error('API request failed');
         }
 
-        const data = await response.json();
+        const respData = await response.json();
 
         // 保存到数据库
         // name
@@ -45,7 +45,7 @@ export async function GET(request) {
         // created_at
 
         // 获取推文数据
-        const resultTweet = data.data.threaded_conversation_with_injections_v2.instructions[0].entries[0].content.itemContent.tweet_results.result;
+        const resultTweet = respData.data.data.threaded_conversation_with_injections_v2.instructions[0].entries[0].content.itemContent.tweet_results.result;
         
         // 获取主推文数据
         const first_tweet = resultTweet.legacy || resultTweet.tweet.legacy;
@@ -111,7 +111,7 @@ export async function GET(request) {
             tweet_text: tweet_text,
             tweet_media: tweet_media,
             tweet_threadscount: tweet_threadscount,
-            tweet_data: JSON.stringify(data),
+            tweet_data: JSON.stringify(respData.data),
             is_hidden: 0,
             post_at : new Date(first_tweet.created_at),
             created_at: new Date()
