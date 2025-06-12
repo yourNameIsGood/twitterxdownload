@@ -84,7 +84,7 @@ export async function GET(request) {
         
         // 计算线程中的推文数量
         let tweet_threadscount = 0;
-        const entries = data.data.threaded_conversation_with_injections_v2.instructions[0].entries;
+        const entries = respData.data.data.threaded_conversation_with_injections_v2.instructions[0].entries;
         entries.forEach(entry => {
             if (entry.content.__typename === "TimelineTimelineModule") {
                 // Process items in module, only process tweets in thread, not replies
