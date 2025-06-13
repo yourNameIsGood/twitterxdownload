@@ -129,7 +129,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                     <div className="mt-3">
                         {tweet.tweet_media.length === 1 && (
                             <div className="w-full h-48 relative">
-                                {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                 {getMediaDom(tweet.tweet_media[0])}
                             </div>
                         )}
@@ -137,11 +137,11 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         {tweet.tweet_media.length === 2 && (
                             <div className="flex gap-1">
                                 <div className="w-1/2 h-48 relative">
-                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                     {getMediaDom(tweet.tweet_media[0])}
                                 </div>
                                 <div className="w-1/2 h-48 relative">
-                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                     {getMediaDom(tweet.tweet_media[1])}
                                 </div>
                             </div>
@@ -150,16 +150,16 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         {tweet.tweet_media.length === 3 && (
                             <div className="flex gap-1 h-52">
                                 <div className="w-1/2 h-full relative">
-                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                    {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                     {getMediaDom(tweet.tweet_media[0])}
                                 </div>
                                 <div className="w-1/2 flex h-full flex-col gap-1 items-between">
                                     <div className="flex-1 h-24 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[1])}
                                     </div>
                                     <div className="flex-1 h-24 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(2)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(2)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[2])}
                                     </div>
                                 </div>
@@ -171,21 +171,21 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                             <div className="flex h-52 gap-1">
                                 <div className="w-1/2 flex flex-col h-full gap-1 items-between">
                                     <div className="h-24 flex-1 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(0)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[0])}
                                     </div>
                                     <div className="h-24 flex-1 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(1)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[1])}
                                     </div>
                                 </div>
                                 <div className="w-1/2 flex flex-col h-full gap-1 items-between">
                                     <div className="h-24 flex-1 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(2)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(2)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[2])}
                                     </div>
                                     <div className="h-24 flex-1 relative">
-                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(3)} className="absolute z-10 top-2 right-2 text-white cursor-pointer" />}
+                                        {enableEdit && <RiCloseCircleFill onClick={() => handleDeleteMedia(3)} className="absolute z-10 top-2 right-2 text-white cursor-pointer bg-black rounded-full" />}
                                         {getMediaDom(tweet.tweet_media[3])}
                                     </div>
                                 </div>

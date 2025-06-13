@@ -88,9 +88,9 @@ export default function Downloader({ params: { locale } }) {
     const translateTweet = async (targetLang) => {
 
         const tempTweets = [...tweets];
-        for(let i = 0; i < originTweets.length; i++){
-            const tweet = originTweets[i];
-            const translatedText = await translate(tweet.text, targetLang);
+        for(let i = 0; i < tempTweets.length; i++){
+            const tweet = tempTweets[i];
+            const translatedText = await translate(tweet.tweet_text, targetLang);
 
             tempTweets[i].tweet_text = translatedText;
         }
@@ -118,7 +118,8 @@ export default function Downloader({ params: { locale } }) {
             screen_name: "screen_name",
             profile_image: "",
             tweet_text: "",
-            tweet_media: []
+            tweet_media: [],
+            medias_info: []
         });
         setTweets(tempTweets);
     }
