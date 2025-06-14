@@ -39,14 +39,8 @@ export default function MyNavbar({ locale = 'en' }) {
           {t('Downloader')}
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="https://github.com/ezshine/twitterxdownload" target="_blank">
-          {t('Self Hosted')}
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <FriendsLink locale={locale} />
-        </NavbarItem>
+       
+        
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
