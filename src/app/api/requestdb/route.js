@@ -16,7 +16,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
   
-  if(Boolean(process.env.USE_SHARED_DB)){
+  if(process.env.NEXT_PUBLIC_USE_SHARED_DB=='1'){
     const response = await fetch(`https://api.twitterxdownload.com/api/requestdb?${action?`action=${action}`:''}`);
     const data = await response.json();
     

@@ -214,7 +214,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         })}
                         </Chip>}
                     </div>
-                    <div>
+                    {process.env.NEXT_PUBLIC_USE_SHARED_DB=='0' && <div>
                         <Dropdown>
                             <DropdownTrigger>
                                 <Button as="div" disableRipple isIconOnly size="sm" variant="light" className="text-foreground/50">
@@ -226,7 +226,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                                 <DropdownItem key="delete">{t('Delete this tweet')}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
-                    </div>
+                    </div>}
                 </div>}
 
             </CardBody>
