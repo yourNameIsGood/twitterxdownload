@@ -41,7 +41,7 @@ export default function HotTweets({ locale = 'en' }) {
     if (isLoading) {
         return (
             <>
-                <div className="text-2xl font-bold px-2 py-4">{t('Hot Tweets')}</div>
+                <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Tweets')}</h3>
                 <div className="flex justify-between gap-5">
                     {[1, 2, 3].map((colIndex) => (
                         <div key={colIndex} className="w-1/3 flex flex-col gap-5">

@@ -39,6 +39,9 @@ export async function generateMetadata({ params }) {
     return {
       title: title,
       description: description,
+      alternates: {
+        canonical: `/tweets/${params.slug}`,
+      },
       openGraph: {
         title: title,
         description: description,
