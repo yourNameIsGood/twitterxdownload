@@ -4,8 +4,16 @@ import { RiSearchLine } from "@remixicon/react";
 import { getTranslation } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import TweetCard from "@/app/components/ui/TweetCard";
+import { useSearchParams } from "next/navigation";
 
 export default function Tweets({ params: { locale } }) {
+    const searchParams = useSearchParams();
+    const initialParams = {
+        screen_name: searchParams.get('screen_name'),
+        name: searchParams.get('name'),
+        text: searchParams.get('text')
+    }
+
     const t = function(key){
         return getTranslation(locale, key);
     }
@@ -22,15 +30,15 @@ export default function Tweets({ params: { locale } }) {
         { key: "quarter", label: t('Quarter') }
     ];
 
-    const [name, setName] = useState('');
-    const [screen_name, setScreenName] = useState('');
-    const [text, setText] = useState('');
+    const [name, setName] = useState(initialParams.name || '');
+    const [screen_name, setScreenName] = useState(initialParams.screen_name || '');
+    const [text, setText] = useState(initialParams.text || '');
     const [content_type, setContentType] = useState('all');
     const [date_range, setDateRange] = useState('all');
     const [loading, setLoading] = useState(false);
     const [tweets, setTweets] = useState([[], [], []]);
 
-    const [shouldSearch, setShouldSearch] = useState(false);
+    const [shouldSearch, setShouldSearch] = useState(name || screen_name || text);
 
     useEffect(() => {
         if (shouldSearch) {
