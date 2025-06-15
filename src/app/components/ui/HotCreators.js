@@ -30,6 +30,7 @@ export default async function HotCreators({ locale = 'en' }) {
                                 isBordered
                                 radius="full"
                                 size="md"
+                                alt={`${creator.name}avatar`}
                                 src={creator.profile_image}
                             />
                             <div className="flex flex-col gap-1 items-start justify-center overflow-hidden flex-1">
