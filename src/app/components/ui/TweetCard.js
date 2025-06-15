@@ -101,6 +101,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                     isBordered
                     radius="full"
                     size="md"
+                    alt={`${tweet.name} avatar`}
                     src={tweet.profile_image}
                 />
                 <div className="flex-1 flex flex-col pt-1 items-start text-left overflow-hidden">
