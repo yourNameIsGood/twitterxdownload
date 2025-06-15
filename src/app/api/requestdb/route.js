@@ -53,7 +53,7 @@ export async function GET(request) {
       allData = result[0].data;
       count = result[0].count[0]?.total || 0;
     } else if (action === 'all') {
-      allData = await Tweets.find({ ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } });
+      allData = await Tweets.find({ ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } }).select('tweet_id post_at');
       count = allData.length;
     }else if (action === 'random') {
       allData = await Tweets.aggregate([
