@@ -158,7 +158,7 @@ export default function Tweets({ params: { locale } }) {
                     <div className='flex items-center gap-2'>{t('Search Results')}{loading && <Spinner className="ml-2" size="sm" color="primary" variant="simple"/>}</div>
                     <div className='flex gap-4 flex-shrink-0'>
                         {/* 内容类型过滤 */}
-                        <div className='w-1/2 min-w-[100px]'>
+                        <div className='w-1/2 min-w-[110px]'>
                             <Select
                                 disabled={loading}
                                 label={t('Content Type')}
@@ -179,7 +179,7 @@ export default function Tweets({ params: { locale } }) {
                         </div>
 
                         {/* 时间范围过滤 */}
-                        <div className='w-1/2 min-w-[100px]'>
+                        <div className='w-1/2 min-w-[110px]'>
                             <Select
                                 disabled={loading}
                                 label={t('Date Range')}
