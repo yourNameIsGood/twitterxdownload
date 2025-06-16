@@ -41,7 +41,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
         if(onUpdateText) onUpdateText(text);
     }
     const handleActions = async (e) => {
-        if(e === 'report'){
+        if(e === 'hidetweet'){
             let tempAdminPwd = '';
             const confirmed = await ConfirmModal.show({
                 title: t('Warning'),
@@ -55,7 +55,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             if(!confirmed) return;
     
             if(tempAdminPwd.trim() !== ''){
-                const res = await fetch(`/api/tweet/report?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
+                const res = await fetch(`/api/tweet/hide?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
                 if(res.ok){
                     if(window)window.location.reload();
                 }else{
@@ -77,6 +77,27 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
     
             if(tempAdminPwd.trim() !== ''){
                 const res = await fetch(`/api/tweet/delete?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
+                if(res.ok){
+                    if(window)window.location.reload();
+                }else{
+                    alert(t('Invalid admin password'));
+                }
+            }
+        }else if(e === 'hideaccount'){
+            let tempAdminPwd = '';
+            const confirmed = await ConfirmModal.show({
+                title: t('Warning'),
+                description: <>
+                    <div className="text-small text-default-400">{t('Hide all tweets from this account on homepage?')}</div>
+                    <Input autoComplete="on" name="adminpwd" type="password" onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
+                </>, 
+                cancelText: t('Cancel'),
+                confirmText: t('Confirm')
+            });
+            if(!confirmed) return;
+
+            if(tempAdminPwd.trim() !== ''){
+                const res = await fetch(`/api/tweet/hide?screen_name=${tweet.screen_name}&adminpwd=${tempAdminPwd.trim()}`);
                 if(res.ok){
                     if(window)window.location.reload();
                 }else{
@@ -229,8 +250,9 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Static Actions" onAction={handleActions}>
-                                <DropdownItem key="report">{t('Hide this tweet')}</DropdownItem>
+                                <DropdownItem key="hidetweet">{t('Hide this tweet')}</DropdownItem>
                                 <DropdownItem key="delete">{t('Delete this tweet')}</DropdownItem>
+                                <DropdownItem key="hideaccount">{t('Hide this account')}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>}

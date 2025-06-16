@@ -1,16 +1,7 @@
 // src/app/api/test-db/route.js
 import dbConnect from '@/lib/db';
 import Tweets from '@/lib/models/tweets';
-
-
-const HiddenScreenNames = [
-    "whyyoutouzhele",
-    "lammichaeltw",
-    "Sexytoxiaoshu",
-    "justice_trail",
-    "xiaolei404",
-    "ezshine"
-]
+import Hiddens from '@/lib/models/hiddens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -29,8 +20,10 @@ export async function GET(request) {
   try {
     await dbConnect();
 
+    const hiddenAccounts = await Hiddens.find().select('screen_name');
+    const hiddenScreenNames = hiddenAccounts.map(account => account.screen_name);
     const baseFilter = {
-        screen_name: { $nin: HiddenScreenNames }
+        screen_name: { $nin: [...hiddenScreenNames] }
     };
 
     let allData;

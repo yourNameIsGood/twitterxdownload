@@ -76,5 +76,7 @@
   "Hide this tweet from homepage?": "¿Ocultar este tweet en la página de inicio?",
   "Delete this tweet from database?": "¿Eliminar este tweet de la base de datos?",
   "Hide this tweet": "Ocultar este tweet",
-  "Delete this tweet": "Eliminar este tweet"
+  "Delete this tweet": "Eliminar este tweet",
+  "Hide all tweets from this account on homepage?": "¿Ocultar todos los tweets de esta cuenta en la página de inicio?",
+  "Hide this account": "Ocultar esta cuenta"
 } 
