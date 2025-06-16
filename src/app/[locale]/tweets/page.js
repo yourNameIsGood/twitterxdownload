@@ -77,7 +77,7 @@ export default function Tweets({ params: { locale } }) {
                     <h2 className="text-xl font-semibold">{t('Search Conditions')}</h2>
                 </div>
 
-                <div className="flex w-full gap-4">
+                <div className="flex w-full gap-4 flex-wrap md:flex-nowrap">
                     {/* 用户名搜索 */}
                     <Input
                         disabled={loading}
@@ -85,7 +85,7 @@ export default function Tweets({ params: { locale } }) {
                         variant="bordered"
                         size="sm"
                         radius="lg"
-                        className="w-1/3"
+                        className="flex-1 md:w-1/3 min-w-[150px]"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         onKeyDown={(e) => {
@@ -102,7 +102,7 @@ export default function Tweets({ params: { locale } }) {
                         variant="bordered"
                         size="sm"
                         radius="lg"
-                        className="w-1/3"
+                        className="flex-1 md:w-1/3 min-w-[150px]"
                         value={screen_name}
                         onChange={(e) => setScreenName(e.target.value)}
                         onKeyDown={(e) => {
@@ -135,7 +135,7 @@ export default function Tweets({ params: { locale } }) {
                         variant="solid"
                         size="lg"
                         radius="xs"
-                        className="px-8"
+                        className="px-8 flex-1 md:flex-none"
                         onPress={handleSearch}
                     >
                         {t('Search')}
@@ -146,7 +146,7 @@ export default function Tweets({ params: { locale } }) {
                         variant="bordered"
                         size="lg"
                         radius="xs"
-                        className="px-8"
+                        className="px-8 flex-1 md:flex-none"
                         onPress={handleClear}
                     >
                         {t('Clear')}
@@ -155,10 +155,10 @@ export default function Tweets({ params: { locale } }) {
             </div>
             <div className="section">
                 <h3 className="text-lg font-semibold mb-4 flex justify-between items-center">
-                    <div className='flex-1 flex items-center gap-2'>{t('Search Results')}{loading && <Spinner className="ml-2" size="sm" color="primary" variant="simple"/>}</div>
-                    <div className='flex gap-4 w-1/4'>
+                    <div className='flex items-center gap-2'>{t('Search Results')}{loading && <Spinner className="ml-2" size="sm" color="primary" variant="simple"/>}</div>
+                    <div className='flex gap-4 flex-shrink-0'>
                         {/* 内容类型过滤 */}
-                        <div className='w-1/2'>
+                        <div className='w-1/2 min-w-[100px]'>
                             <Select
                                 disabled={loading}
                                 label={t('Content Type')}
@@ -179,7 +179,7 @@ export default function Tweets({ params: { locale } }) {
                         </div>
 
                         {/* 时间范围过滤 */}
-                        <div className='w-1/2'>
+                        <div className='w-1/2 min-w-[100px]'>
                             <Select
                                 disabled={loading}
                                 label={t('Date Range')}
@@ -201,9 +201,9 @@ export default function Tweets({ params: { locale } }) {
                     </div>
                 </h3>
                 {tweets.some(row => row.length > 0) ? (
-                    <div className="flex justify-between gap-5 mt-8">
+                    <div className="flex justify-between gap-5 mt-8 flex-wrap md:flex-nowrap">
                         {tweets.map((row, index) => (
-                            <div key={index} className="w-1/3 flex flex-col gap-5">
+                            <div key={index} className="w-full md:w-1/3 flex flex-col gap-5">
                                 {row.map((tweet) => (
                                     <TweetCard locale={locale} key={tweet.tweet_id} tweet={tweet} />
                                 ))}
