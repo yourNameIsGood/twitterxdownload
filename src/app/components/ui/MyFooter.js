@@ -13,7 +13,7 @@ export default function MyFooter({ locale = 'en' }) {
                     <Link href="https://github.com/ezshine/twitterxdownload" target="_blank"><Chip color="danger" size="sm" variant="flat" className="ml-2 -mt-1.5">v{process.env.APP_VERSION}</Chip></Link>
                 </div>
                 <p className="text-sm text-gray-500 mb-7">{t('The fastest and most reliable Twitter video downloader. Free to use, no registration required.')}</p>
-                <p className="text-sm text-gray-500">© 2024 <a href="https://twitterxdownload.com" target="_blank">TwitterXDownload</a> {t('All rights reserved.')}</p>
+                <p className="text-sm text-gray-500">© 2025 <a href="https://thetwittermarketingblog.com" target="_blank">TwitterXDownload</a> {t('All rights reserved.')}</p>
             </div>
             <div className="flex flex-col gap-4">
                 <div>
@@ -28,7 +28,7 @@ export default function MyFooter({ locale = 'en' }) {
             <div className="flex flex-col gap-4">
                 <div>
                     <p className="font-bold mb-2">{t('Contact Us')}</p>    
-                    <Link href="mailto:support@twitterxdownload.com" className="text-sm hover:text-primary">support@twitterxdownload.com</Link>
+                    <Link href="mailto:support@thetwittermarketingblog.com" className="text-sm hover:text-primary">support@thetwittermarketingblog.com</Link>
                 </div>
             </div>
         </div>
