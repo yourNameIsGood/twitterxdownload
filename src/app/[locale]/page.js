@@ -5,6 +5,9 @@ import HotCreators from '@/app/components/ui/HotCreators';
 import Hero from '@/app/components/ui/Hero';
 import { redirect } from 'next/navigation';
 
+// set to true to enable home listing
+const enableHomeListing = false;
+
 export default async function Home({ params: { locale } }) {
   const t = function (key) {
     return getTranslation(locale, key);
@@ -26,13 +29,17 @@ export default async function Home({ params: { locale } }) {
             redirect(`/downloader?url=${url}`);
           }} />
         </div>
-        <div className="section">
-          <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Creators')}</h3>
-          <HotCreators locale={locale} />
-        </div>
-        <div className="section">
-          <HotTweets locale={locale} />
-        </div>
+        {enableHomeListing && (
+        <>
+          <div className="section">
+            <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Creators')}</h3>
+            <HotCreators locale={locale} />
+          </div>
+          <div className="section">
+            <HotTweets locale={locale} />
+          </div>
+        </>
+        )}
         <div className="section">
           <h3 className="text-2xl font-bold px-2 py-4">{t('Download Twitter video and all content')}</h3>
           <div className="px-2">
