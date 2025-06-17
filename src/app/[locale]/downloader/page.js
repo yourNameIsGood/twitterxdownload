@@ -44,10 +44,10 @@ export default function Downloader({ params: { locale } }) {
 
     let retryTimes = 0;
     const fetchTweet = async (url) => {
-        const tweet_id = url.split('/').pop();
+        const tweet_id = url.match(/status\/(\d{19})/)?.[1] || url.split('/').pop();
         const response = await fetch(`/api/requestx?tweet_id=${tweet_id}`);
         const data = await response.json();
-        setIsLoading(false);
+        
 
         if(!data.success){
             // 如果请求失败,最多重试3次
@@ -55,7 +55,6 @@ export default function Downloader({ params: { locale } }) {
             if(retryTimes < 3){
                 setTimeout(() => {
                     console.log("retry fetch " + (retryTimes+1));
-                    setIsLoading(true);
                     fetchTweet(url);
                     retryTimes++;
                 }, 1000 + Math.random() * 500);
@@ -63,6 +62,7 @@ export default function Downloader({ params: { locale } }) {
             return;
         }
 
+        setIsLoading(false);
         setTweetData(data.data);
 
         const tempOriginTweets = parseTweetData(data.data);
