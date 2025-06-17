@@ -74,5 +74,7 @@
   "Hide this tweet from homepage?": "确定在首页隐藏此推文吗？",
   "Delete this tweet from database?": "确定从数据库删除此推文吗？",
   "Hide this tweet": "隐藏此推文",
-  "Delete this tweet": "删除此推文"
+  "Delete this tweet": "删除此推文",
+  "Hide all tweets from this account on homepage?": "确定在首页隐藏该账号的所有推文吗？",
+  "Hide this account": "隐藏此账号"
 }

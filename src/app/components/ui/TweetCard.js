@@ -1,9 +1,10 @@
-import { Card, CardHeader, CardBody, Avatar,Chip,Button,Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,Input } from "@heroui/react";
-import { useRouter } from "next/navigation";
+'use client';
+import { Card, CardHeader, CardBody, CardFooter, Avatar,Chip,Button,Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,Input } from "@heroui/react";
 import { useState } from "react";
 import { RiCloseCircleFill,RiArrowDropDownLine,RiMoreFill } from "@remixicon/react"
 import { getTranslation } from "@/lib/i18n";
 import ConfirmModal from "./ConfirmModal";
+import Link from "next/link";
 
 export default function TweetCard({ tweet,enableEdit = false,locale='en', className,onDeleteTweet,onInsertTweet,onAddMedia,onDeleteMedia,onUpdateText }) {
     
@@ -11,7 +12,6 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
         return getTranslation(locale, key);
     }
 
-    const router = useRouter();
     const [textLength, setTextLength] = useState(tweet.tweet_text.length);
 
     const getMediaDom = (mediaUrl) => {
@@ -22,7 +22,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
         }
         return (
             <img src={mediaUrl} alt="Tweet media" className="w-full h-full rounded-lg object-cover" />
-        )
+         )
     }
 
     const handleDeleteMedia = (index) => {
@@ -41,13 +41,13 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
         if(onUpdateText) onUpdateText(text);
     }
     const handleActions = async (e) => {
-        if(e === 'report'){
+        if(e === 'hidetweet'){
             let tempAdminPwd = '';
             const confirmed = await ConfirmModal.show({
                 title: t('Warning'),
                 description: <>
                     <div className="text-small text-default-400">{t('Hide this tweet from homepage?')}</div>
-                    <Input onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
+                    <Input autoComplete="on" name="adminpwd" type="password" onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
                 </>,
                 cancelText: t('Cancel'),
                 confirmText: t('Confirm')
@@ -55,9 +55,11 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             if(!confirmed) return;
     
             if(tempAdminPwd.trim() !== ''){
-                const res = await fetch(`/api/tweet/report?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
+                const res = await fetch(`/api/tweet/hide?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
                 if(res.ok){
                     if(window)window.location.reload();
+                }else{
+                    alert(t('Invalid admin password'));
                 }
             }
         }else if(e === 'delete'){
@@ -66,7 +68,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                 title: t('Warning'),
                 description: <>
                     <div className="text-small text-default-400">{t('Delete this tweet from database?')}</div>
-                    <Input onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
+                    <Input autoComplete="on" name="adminpwd" type="password" onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
                 </>,
                 cancelText: t('Cancel'),
                 confirmText: t('Confirm')
@@ -77,6 +79,29 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                 const res = await fetch(`/api/tweet/delete?tweet_id=${tweet.tweet_id}&adminpwd=${tempAdminPwd.trim()}`);
                 if(res.ok){
                     if(window)window.location.reload();
+                }else{
+                    alert(t('Invalid admin password'));
+                }
+            }
+        }else if(e === 'hideaccount'){
+            let tempAdminPwd = '';
+            const confirmed = await ConfirmModal.show({
+                title: t('Warning'),
+                description: <>
+                    <div className="text-small text-default-400">{t('Hide all tweets from this account on homepage?')}</div>
+                    <Input autoComplete="on" name="adminpwd" type="password" onChange={(e) => {tempAdminPwd=e.target.value}} placeholder={t('Please enter the admin password')} />
+                </>, 
+                cancelText: t('Cancel'),
+                confirmText: t('Confirm')
+            });
+            if(!confirmed) return;
+
+            if(tempAdminPwd.trim() !== ''){
+                const res = await fetch(`/api/tweet/hide?screen_name=${tweet.screen_name}&adminpwd=${tempAdminPwd.trim()}`);
+                if(res.ok){
+                    if(window)window.location.reload();
+                }else{
+                    alert(t('Invalid admin password'));
                 }
             }
         }
@@ -88,18 +113,16 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
             isHoverable={!enableEdit}
             isPressable={!enableEdit}
             disableRipple={true}
-            onPress={() => {
-                router.push(`/downloader?url=https://x.com/${tweet.screen_name}/status/${tweet.tweet_id}`);
-            }}
             className={`tweet-card w-full p-2 cursor-pointer select-none border-foreground/10 border-[1px] rounded-2xl ${className}`}
             key={tweet.tweet_id}>
-            <CardHeader className="flex justify-between gap-4">
+            <CardHeader as={!enableEdit ? Link : 'div'}
+            href={`/tweets/${tweet.tweet_id}`} className="flex justify-between gap-4">
                 <Avatar
                     className="flex-shrink-0"
-                    disableAnimation={true}
                     isBordered
                     radius="full"
                     size="md"
+                    alt={`${tweet.name} avatar`}
                     src={tweet.profile_image}
                 />
                 <div className="flex-1 flex flex-col pt-1 items-start text-left overflow-hidden">
@@ -110,7 +133,8 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         <Chip color="default" variant="flat" size="sm" className="flex items-center gap-1 pl-2" endContent={<RiArrowDropDownLine />}>{tweet.tweet_threadscount}</Chip>
                     </div>}
             </CardHeader>
-            <CardBody className="text-small text-default-400 pb-0">
+            <CardBody as={!enableEdit ? Link : 'div'}
+            href={`/tweets/${tweet.tweet_id}`} className="text-small text-default-400 pb-0">
                 <pre className={`whitespace-pre-wrap ${enableEdit ? "border-[1px] border-primary p-2 rounded-md text-foreground" : ""}`} contentEditable={enableEdit} onInput={(e) => {
                     setTextLength(e.target.innerText.length);
                 }} 
@@ -202,7 +226,11 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         <Button size="sm" onPress={() => handleDeleteTweet()}>{t('Delete')}</Button>
                     </div>
                 </div>}
-                {!enableEdit && <div className='text-small text-default-400 flex justify-between items-center mt-1'>
+                
+
+            </CardBody>
+            <CardFooter className="py-0">
+            {!enableEdit && <div className='text-small text-default-400 w-full flex justify-between items-center mt-1'>
                     <div>
                         {tweet.post_at && !enableEdit && <Chip color="default" variant="light" size="sm" className="text-foreground/50">
                         {new Date(tweet.post_at).toLocaleDateString('zh-CN', {
@@ -214,7 +242,7 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                         })}
                         </Chip>}
                     </div>
-                    <div>
+                    {process.env.NEXT_PUBLIC_USE_SHARED_DB!='1' && <div>
                         <Dropdown>
                             <DropdownTrigger>
                                 <Button as="div" disableRipple isIconOnly size="sm" variant="light" className="text-foreground/50">
@@ -222,14 +250,14 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Static Actions" onAction={handleActions}>
-                                <DropdownItem key="report">{t('Hide this tweet')}</DropdownItem>
+                                <DropdownItem key="hidetweet">{t('Hide this tweet')}</DropdownItem>
                                 <DropdownItem key="delete">{t('Delete this tweet')}</DropdownItem>
+                                <DropdownItem key="hideaccount">{t('Hide this account')}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
-                    </div>
+                    </div>}
                 </div>}
-
-            </CardBody>
+            </CardFooter>
         </Card>
     )
 }

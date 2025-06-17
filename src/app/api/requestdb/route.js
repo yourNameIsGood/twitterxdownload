@@ -1,22 +1,13 @@
 // src/app/api/test-db/route.js
 import dbConnect from '@/lib/db';
 import Tweets from '@/lib/models/tweets';
-
-
-const HiddenScreenNames = [
-    "whyyoutouzhele",
-    "lammichaeltw",
-    "Sexytoxiaoshu",
-    "justice_trail",
-    "xiaolei404",
-    "ezshine"
-]
+import Hiddens from '@/lib/models/hiddens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
   
-  if(Boolean(process.env.USE_SHARED_DB)){
+  if(process.env.NEXT_PUBLIC_USE_SHARED_DB=='1'){
     const response = await fetch(`https://api.twitterxdownload.com/api/requestdb?${action?`action=${action}`:''}`);
     const data = await response.json();
     
@@ -29,8 +20,10 @@ export async function GET(request) {
   try {
     await dbConnect();
 
+    const hiddenAccounts = await Hiddens.find().select('screen_name');
+    const hiddenScreenNames = hiddenAccounts.map(account => account.screen_name);
     const baseFilter = {
-        screen_name: { $nin: HiddenScreenNames }
+        screen_name: { $nin: [...hiddenScreenNames] }
     };
 
     let allData;
@@ -52,7 +45,10 @@ export async function GET(request) {
       ]);
       allData = result[0].data;
       count = result[0].count[0]?.total || 0;
-    } else if (action === 'random') {
+    } else if (action === 'all') {
+      allData = await Tweets.find({ ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } }).select('tweet_id post_at');
+      count = allData.length;
+    }else if (action === 'random') {
       allData = await Tweets.aggregate([
         { $match: baseFilter },
         { $sample: { size: 10 } }

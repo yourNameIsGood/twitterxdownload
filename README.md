@@ -72,7 +72,7 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 
 2. Access Coolify dashboard through your server IP:
 ```
-http://YOUR_SERVER_IP:3000
+http://YOUR_SERVER_IP:8000
 ```
 
 #### 2. Database Setup in Coolify
