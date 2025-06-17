@@ -76,5 +76,7 @@
   "Hide this tweet from homepage?": "Bu tweeti ana sayfadan gizle?",
   "Delete this tweet from database?": "Bu tweeti veritabanından sil?",
   "Hide this tweet": "Bu tweeti gizle",
-  "Delete this tweet": "Bu tweeti sil"
+  "Delete this tweet": "Bu tweeti sil",
+  "Hide all tweets from this account on homepage?": "Bu hesabın tüm tweetlerini ana sayfadan gizle?",
+  "Hide this account": "Bu hesabı gizle"
 } 

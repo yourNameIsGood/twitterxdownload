@@ -75,5 +75,7 @@
   "Hide this tweet from homepage?": "確定在首頁隱藏此推文？",
   "Delete this tweet from database?": "確定從資料庫刪除此推文？",
   "Hide this tweet": "隱藏此推文",
-  "Delete this tweet": "刪除此推文"
+  "Delete this tweet": "刪除此推文",
+  "Hide all tweets from this account on homepage?": "確定在首頁隱藏該賬號的所有推文？",
+  "Hide this account": "隱藏此賬號"
 }

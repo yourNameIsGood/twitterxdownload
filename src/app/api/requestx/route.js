@@ -12,7 +12,7 @@ export async function GET(request) {
         }, { status: 400 });
     }
 
-    if(Boolean(process.env.USE_SHARED_DB)){
+    if(process.env.NEXT_PUBLIC_USE_SHARED_DB=='1'){
         const response = await fetch(`https://api.twitterxdownload.com/api/requestx?${tweet_id?`tweet_id=${tweet_id}`:''}`);
         const data = await response.json();
         

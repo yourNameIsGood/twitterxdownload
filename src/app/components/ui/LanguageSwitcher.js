@@ -1,4 +1,3 @@
-// LanguageSwitcher.js (客户端组件)
 "use client";
 
 import {

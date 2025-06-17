@@ -76,5 +76,7 @@
   "Hide this tweet from homepage?": "Hide this tweet from homepage?",
   "Delete this tweet from database?": "Delete this tweet from database?",
   "Hide this tweet": "Hide this tweet",
-  "Delete this tweet": "Delete this tweet"
+  "Delete this tweet": "Delete this tweet",
+  "Hide all tweets from this account on homepage?": "Hide all tweets from this account on homepage?",
+  "Hide this account": "Hide this account"
 } 

@@ -76,5 +76,7 @@
   "Hide this tweet from homepage?": "ซ่อนทวีตนี้จากหน้าแรก?",
   "Delete this tweet from database?": "ลบทวีตนี้จากฐานข้อมูล?",
   "Hide this tweet": "ซ่อนทวีต",
-  "Delete this tweet": "ลบทวีต"
+  "Delete this tweet": "ลบทวีต",
+  "Hide all tweets from this account on homepage?": "ซ่อนทวีตทั้งหมดจากบัญชีนี้จากหน้าแรก?",
+  "Hide this account": "ซ่อนบัญชีนี้"
 } 

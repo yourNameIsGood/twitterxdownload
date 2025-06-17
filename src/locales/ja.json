@@ -76,5 +76,7 @@
   "Hide this tweet from homepage?": "ホームページからこのツイートを非表示にする？",
   "Delete this tweet from database?": "データベースからこのツイートを削除する？",
   "Hide this tweet": "このツイートを非表示にする",
-  "Delete this tweet": "このツイートを削除する"
+  "Delete this tweet": "このツイートを削除する",
+  "Hide all tweets from this account on homepage?": "このアカウントのツイートをホームページから非表示にする？",
+  "Hide this account": "このアカウントを非表示にする"
 } 
