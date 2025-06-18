@@ -58,6 +58,9 @@ export default function Downloader({ params: { locale } }) {
                     fetchTweet(url);
                     retryTimes++;
                 }, 1000 + Math.random() * 500);
+            }else{
+                retryTimes = 0;
+                setIsLoading(false);
             }
             return;
         }
