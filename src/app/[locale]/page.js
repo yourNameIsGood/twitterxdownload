@@ -4,6 +4,7 @@ import FAQ from '@/app/components/ui/FAQ';
 import HotCreators from '@/app/components/ui/HotCreators';
 import Hero from '@/app/components/ui/Hero';
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers'
 
 // set to true to enable home listing
 const enableHomeListing = false;
@@ -13,7 +14,11 @@ export default async function Home({ params: { locale } }) {
     return getTranslation(locale, key);
   }
   
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const headersList = await headers()
+  const host = headersList.get('host')
+  const protocol = headersList.get('x-forwarded-proto') || 'http'
+  
+  const baseUrl = `${protocol}://${host}`
   const remainApiResp = await fetch(`${baseUrl}/api/remains`,{
     cache: 'no-store'
   });
