@@ -208,12 +208,12 @@ export default function Downloader({ params: { locale } }) {
                 <div></div>
             </div>
             <div className="flex gap-4 justify-center items-start">
-                { tweetData && (
+                { tweetData && originTweets.length > 0 && (
                     <>
                         <div className="w-1/3 md:block hidden box-border border-foreground/10 border-[1px] rounded-2xl p-8 bg-[#f8f8f8] dark:bg-foreground/5">
                             <div className="text-medium font-semibold flex items-center">
                                 <div className="flex-1">{t('Parse Result')}</div>
-                                <Button href={`/tweets/${tweetData.data.threaded_conversation_with_injections_v2.instructions[0].entries[0].content.itemContent.tweet_results.result.legacy.id_str}`} target="_blank" as={Link} color="primary" size="sm" radius="full">
+                                <Button href={`/tweets/${originTweets[0].id_str}`} target="_blank" as={Link} color="primary" size="sm" radius="full">
                                     {t('Goto Article')}
                                 </Button>
                             </div>

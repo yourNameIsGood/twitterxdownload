@@ -29,11 +29,11 @@ export default function MyNavbar({ locale = 'en' }) {
         </Link>
       </NavbarBrand>
       <NavbarContent className="hidden md:flex gap-6" justify="center">
-        <NavbarItem>
+        {process.env.NEXT_PUBLIC_SEARCH_ENABLED != 0 && <NavbarItem>
           <Link color="foreground" href="/tweets">
           {t('Search Tweets')}
           </Link>
-        </NavbarItem>
+        </NavbarItem>}
         <NavbarItem>
           <Link color="foreground" href="/downloader">
           {t('Downloader')}

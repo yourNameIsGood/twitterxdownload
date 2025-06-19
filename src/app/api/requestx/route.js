@@ -61,7 +61,7 @@ export async function GET(request) {
         const first_tweet = resultTweet.legacy || resultTweet.tweet.legacy;
         
         // 获取用户信息
-        const user = resultTweet.core.user_results.result.legacy;
+        const user = resultTweet.core?.user_results?.result?.legacy || resultTweet.tweet.core?.user_results?.result?.legacy;;
         const name = user.name;
         const screen_name = user.screen_name;
         const profile_image = user.profile_image_url_https;
@@ -90,6 +90,21 @@ export async function GET(request) {
             }).filter(url => url !== null);
             
             tweet_media = media_urls.join(',');
+        }
+
+        const card = resultTweet.card || resultTweet.tweet.card;
+        if(card.legacy&&card.legacy.binding_values){
+            const value = card.legacy.binding_values[0].value.string_value;
+            const valueJson = JSON.parse(value);
+            const mediaId = valueJson.component_objects.media_1.data.id;
+            const media = valueJson.media_entities[mediaId];
+            const variants = media.video_info.variants;
+            const mp4Variants = variants.filter(v => v.content_type === 'video/mp4');
+            if (mp4Variants.length > 0) {
+                // Sort by bitrate, choose highest quality
+                mp4Variants.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
+                tweet_media = mp4Variants[0].url;
+            }
         }
         
         // 计算线程中的推文数量
