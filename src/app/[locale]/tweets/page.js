@@ -48,6 +48,11 @@ export default function Tweets({ params: { locale } }) {
     }, [shouldSearch]);
 
     const handleSearch = async () => {
+
+        if(!name.trim() && !screen_name.trim() && !text.trim()){
+            return;
+        }
+
         setLoading(true);
         const response = await fetch(`/api/requestdb?action=search&name=${name}&screen_name=${screen_name}&text=${text}&content_type=${content_type}&date_range=${date_range}`);
         const data = await response.json();
