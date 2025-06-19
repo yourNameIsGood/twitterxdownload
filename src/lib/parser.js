@@ -83,10 +83,10 @@ function parseTweetData(oriData) {
                                     tweetData.medias.push({
                                         url: mp4Variants[0].url,
                                         type: 'video',
-                                        id_str: media.id_str,
+                                        id_str: media.source_status_id_str || media.id_str,
                                         duration_millis: media.video_info.duration_millis,
                                         status_id: tweetId,
-                                        screen_name: screen_name
+                                        screen_name: media.additional_media_info?.source_user?.user_results?.result?.legacy?.screen_name || screen_name
                                     });
                                 }
                             }
@@ -150,11 +150,10 @@ function parseTweetData(oriData) {
                                                 tweetData.medias.push({
                                                     url: mp4Variants[0].url,
                                                     type: 'video',
-                                                    id_str: media.id_str,
+                                                    id_str: media.source_status_id_str || media.id_str,
                                                     duration_millis: media.video_info.duration_millis,
-                                                    video_status_url: `https://x.com/${screen_name}/status/${tweetId}/video/1`,
                                                     status_id: tweetId,
-                                                    screen_name: screen_name
+                                                    screen_name: media.additional_media_info?.source_user?.user_results?.result?.legacy?.screen_name || screen_name
                                                 });
                                             }
                                         }

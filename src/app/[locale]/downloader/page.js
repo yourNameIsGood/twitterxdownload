@@ -82,6 +82,7 @@ export default function Downloader({ params: { locale } }) {
             }
         });
         setTweets(tempTweets);
+        console.log(tempTweets);
 
         fetchRemainApiCount();
 
