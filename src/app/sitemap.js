@@ -1,5 +1,5 @@
 export default async function sitemap() {
-    const baseUrl = 'https://twitterxdownload.com';
+    const baseUrl = 'https://www.thetwittermarketingblog.com';
 
     // 获取最新推文用于 sitemap
     const tweets = await fetch(`${baseUrl}/api/requestdb?action=all`, {
