@@ -5,9 +5,11 @@ import { getTranslation } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import TweetCard from "@/app/components/ui/TweetCard";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Tweets({ params: { locale } }) {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const initialParams = {
         screen_name: searchParams.get('screen_name'),
         name: searchParams.get('name'),
@@ -54,6 +56,9 @@ export default function Tweets({ params: { locale } }) {
         }
 
         setLoading(true);
+
+        router.replace(`/tweets?name=${name}&screen_name=${screen_name}&text=${text}`);
+
         const response = await fetch(`/api/requestdb?action=search&name=${name}&screen_name=${screen_name}&text=${text}&content_type=${content_type}&date_range=${date_range}`);
         const data = await response.json();
         

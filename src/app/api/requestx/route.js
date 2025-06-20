@@ -93,7 +93,7 @@ export async function GET(request) {
         }
 
         const card = resultTweet.card || resultTweet.tweet.card;
-        if(card.legacy&&card.legacy.binding_values){
+        if(card && card.legacy&&card.legacy.binding_values){
             const value = card.legacy.binding_values[0].value.string_value;
             const valueJson = JSON.parse(value);
             const mediaId = valueJson.component_objects.media_1.data.id;
