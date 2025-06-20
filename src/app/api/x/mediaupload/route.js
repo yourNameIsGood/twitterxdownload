@@ -94,7 +94,8 @@ export async function POST(request) {
         body: formData
       });
     } else if (command) {
-      // 处理分块上传命令
+      let requestBody;
+
       switch (command) {
         case 'INIT':
           if (!formData.get('total_bytes') || !formData.get('media_type')) {
@@ -103,6 +104,10 @@ export async function POST(request) {
               { status: 400 }
             );
           }
+
+          // 直接转发原始formData
+          requestBody = formData;
+          console.log('INIT Request - FormData:', Array.from(formData.entries()));
           break;
 
         case 'APPEND':
@@ -112,6 +117,16 @@ export async function POST(request) {
               { status: 400 }
             );
           }
+
+          // 重新构建FormData确保正确格式
+          const appendFormData = new FormData();
+          appendFormData.append('command', 'APPEND');
+          appendFormData.append('media_id', formData.get('media_id'));
+          appendFormData.append('segment_index', formData.get('segment_index'));
+          appendFormData.append('media', formData.get('media'));
+
+          requestBody = appendFormData;
+          console.log('APPEND Request - FormData:', Array.from(appendFormData.entries()));
           break;
 
         case 'FINALIZE':
@@ -121,6 +136,10 @@ export async function POST(request) {
               { status: 400 }
             );
           }
+
+          // 直接转发原始formData
+          requestBody = formData;
+          console.log('FINALIZE Request - FormData:', Array.from(formData.entries()));
           break;
 
         default:
@@ -136,7 +155,7 @@ export async function POST(request) {
         headers: {
           'Authorization': oauthHeader
         },
-        body: formData
+        body: requestBody
       });
     } else {
       return Response.json(
@@ -145,8 +164,20 @@ export async function POST(request) {
       );
     }
 
-    const data = await response.json();
-
+    const responseText = await response.text();
+    
+    // 如果响应为空（APPEND命令经常如此），返回成功状态
+    if (!responseText.trim()) {
+      return new Response(null, {
+        status: response.status,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+    }
+    
+    // 否则解析JSON并返回
+    const data = JSON.parse(responseText);
     return Response.json(data, {
       status: response.status,
       headers: {
@@ -157,7 +188,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Twitter API Error:', error);
     return Response.json(
-      { error: '请求Twitter API失败' },
+      { error: error.message },
       { status: 500 }
     );
   }

@@ -4,9 +4,13 @@ import Link from "next/link";
 import { parseTweetData } from "@/lib/parser";
 import ShareButtons from "@/app/components/ui/ShareButtons";
 import Explore from "@/app/components/ui/Explore";
+import { headers } from 'next/headers'
 
 async function getTweetData(slug) {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const headersList = await headers()
+    const host = headersList.get('host')
+    const protocol = headersList.get('x-forwarded-proto') || 'http'
+    const baseUrl = `${protocol}://${host}`
     const detailResp = await fetch(`${baseUrl}/api/requestdb?action=detail&tweet_id=${slug}`);
     const data = await detailResp.json();
     const tweetData = data.data[0];

@@ -72,7 +72,7 @@ export default function RePublishPanel({ locale ='en',tweets,onClose }) {
                 
                 if(mediaSource.includes('.mp4')){
                     // 如果是视频网址，则改为 Twitter 官方的 postvideo 形式
-                    aTweet.setText(tweetObj.tweet_text + `\nhttps://x.com/${mediaInfo.screen_name}/status/${mediaInfo.status_id}/video/1`);
+                    aTweet.setText(tweetObj.tweet_text + `\nhttps://x.com/${mediaInfo.screen_name}/status/${mediaInfo.id_str}/video/1`);
                 }else{
                     showPublishNotice(`${i+1}/${tweets.length} ${t('Media')} ${j+1}/${tweetObj.tweet_media.length} ${t('Sending')}`, 'success');
                     await aTweet.addMedia(mediaSource);
@@ -82,7 +82,7 @@ export default function RePublishPanel({ locale ='en',tweets,onClose }) {
             const response = await aTweet.send();
 
             if(!response.data){
-                setPublishNotice(`Error：${response.detail || 'Post Forbidden'}`);
+                showPublishNotice(`Error：${response.detail || 'Post Forbidden'}`);
                 break;
             }
             successCount++;
