@@ -14,7 +14,7 @@ export default async function sitemap() {
             priority: 1.0,
         },
         {
-            url: `${baseUrl}/zh`,
+            url: `${baseUrl}/zh-CN`,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 1.0,
@@ -38,7 +38,7 @@ export default async function sitemap() {
             priority: 1.0,
         },
         {
-            url: `${baseUrl}/hk`,
+            url: `${baseUrl}/zh-HK`,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 1.0,

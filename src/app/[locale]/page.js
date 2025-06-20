@@ -4,16 +4,18 @@ import FAQ from '@/app/components/ui/FAQ';
 import HotCreators from '@/app/components/ui/HotCreators';
 import Hero from '@/app/components/ui/Hero';
 import { redirect } from 'next/navigation';
-
-// set to true to enable home listing
-const enableHomeListing = false;
+import { headers } from 'next/headers'
 
 export default async function Home({ params: { locale } }) {
   const t = function (key) {
     return getTranslation(locale, key);
   }
   
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const headersList = await headers()
+  const host = headersList.get('host')
+  const protocol = headersList.get('x-forwarded-proto') || 'http'
+  
+  const baseUrl = `${protocol}://${host}`
   const remainApiResp = await fetch(`${baseUrl}/api/remains`,{
     cache: 'no-store'
   });
@@ -29,7 +31,7 @@ export default async function Home({ params: { locale } }) {
             redirect(`/downloader?url=${url}`);
           }} />
         </div>
-        {enableHomeListing && (
+        {process.env.NEXT_PUBLIC_HOME_LISTING != 0 && (
         <>
           <div className="section">
             <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Creators')}</h3>

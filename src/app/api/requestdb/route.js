@@ -85,6 +85,7 @@ export async function GET(request) {
 
         // 构建查询条件
         const query = {
+            ...baseFilter,
             ...(name ? { name: { $regex: name, $options: 'i' } } : {}),
             ...(screen_name ? { screen_name: { $regex: screen_name, $options: 'i' } } : {}),
             ...(text ? { tweet_text: { $regex: text, $options: 'i' } } : {})
