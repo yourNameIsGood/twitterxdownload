@@ -45,7 +45,7 @@ export default function Downloader({ params: { locale } }) {
     let retryTimes = 0;
     const fetchTweet = async (url) => {
         const tweet_id = url.match(/status\/(\d{19})/)?.[1] || url.split('/').pop();
-        const response = await fetch(`/api/requestx?tweet_id=${tweet_id}`);
+        const response = await fetch(`https://api.twitterxdownload.com/api/requestx?tweet_id=${tweet_id}`);
         const data = await response.json();
         
 
