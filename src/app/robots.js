@@ -11,6 +11,6 @@ export default function robots() {
         ],
         crawlDelay: 1
       },
-      sitemap: 'https://twitterxdownload.com/sitemap.xml',
+      sitemap: 'https://www.thetwittermarketingblog.com/sitemap.xml',
     }
   }

@@ -12,32 +12,32 @@ import MyFooter from '../components/ui/MyFooter';
 
 export const metadata = {
   title: {
-    default: 'TwitterXDownload - Free Twitter Video Downloader',
-    template: '%s | TwitterXDownload'
+    default: 'Twitter Marketing Blog Tool - Free Twitter Video Downloader',
+    template: '%s | TwitterMarketingBlog'
   },
-  description: 'Download Twitter videos and media content for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Saver. Twitter X Download.',
-  keywords: 'twitter downloader, x video downloader, twitter video download, x.com downloader',
-  authors: [{ name: 'TwitterXDownload' }],
+  description: 'Download Twitter/X.com videos and Re-twitt media content for marketing purpose for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Editor.',
+  keywords: 'twitter marketing tool, x.com video downloader',
+  authors: [{ name: 'TwitterMarketingBlog' }],
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   alternates: {
-    canonical: 'https://twitterxdownload.com/',
+    canonical: 'https://www.thetwittermarketingblog.com/',
   },
   openGraph: {
-    title: 'TwitterXDownload - Free Twitter Video Downloader',
-    description: 'Download Twitter videos and media content for free. No registration required.',
+    title: 'Twitter Marketing Blog Tool - Free Twitter Video Downloader',
+    description: 'Download Twitter/X.com videos and Re-twitt media content for marketing purpose for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Editor.',
     type: 'website',
-    url: 'https://twitterxdownload.com',
-    siteName: 'TwitterXDownload',
+    url: 'https://www.thetwittermarketingblog.com',
+    siteName: 'Twitter Marketing Blog Tool',
     images: [{
-      url: 'https://twitterxdownload.com/images/og.png'
+      url: 'https://www.thetwittermarketingblog.com/images/og.png'
     }]
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@twitterxdownload',
-    title: 'TwitterXDownload - Free Twitter Video Downloader',
-    description: 'Download Twitter videos and media content for free. No registration required.',
-    images: ['https://twitterxdownload.com/images/og.png']
+    site: '@thetwittermarketingblog',
+    title: 'Twitter Marketing Blog Tool - Free Twitter Video Downloader',
+    description: 'Download Twitter/X.com videos and Re-twitt media content for marketing purpose for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Editor.',
+    images: ['https://www.thetwittermarketingblog.com/images/og.png']
   },
   icons: {
     icon: [

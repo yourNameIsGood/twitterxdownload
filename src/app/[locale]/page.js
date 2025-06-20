@@ -46,7 +46,7 @@ export default async function Home({ params: { locale } }) {
           <h3 className="text-2xl font-bold px-2 py-4">{t('Download Twitter video and all content')}</h3>
           <div className="px-2">
             <p>
-              {t('TwitterXDownload is an online web app to download twitter videos and all content to your computer directly. Twitter videos and Twitter GIFs are embedded in the tweet, so to download twitter videos online, you need to copy the tweet URL/link and paste it in the above text box. Our Twitter X download service will extract the twitter to mp4 link from the tweet and you can save twitter videos to your computer.')}
+              {t('Download Twitter/X.com videos and Re-twitt media content for marketing purpose for free. No registration required. Fast and easy Twitter video downloader. Twitter Media Editor.')}
             </p>
           </div>
         </div>

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
     const title = tweet_text.substring(0, 50);
     const description = tweet_text.substring(0, 150);
 
-    let image = "https://twitterxdownload.com/images/og.png";
+    let image = "https://www.thetwittermarketingblog.com/images/og.png";
     // 如果 tweet.tweet_media 存在,则使用 tweet.tweet_media 的第一个图片
     // 获取推文数据
     const data = JSON.parse(tweet.tweet_data);
@@ -50,15 +50,15 @@ export async function generateMetadata({ params }) {
         title: title,
         description: description,
         type: 'website',
-        url: 'https://twitterxdownload.com',
-        siteName: 'TwitterXDownload',
+        url: 'https://www.thetwittermarketingblog.com',
+        siteName: 'TwitterMarketingBlog',
         images: [{
           url: image
         }]
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@twitterxdownload',
+        site: '@thetwittermarketingblog',
         title: title,
         description: description,
         images: [image]
