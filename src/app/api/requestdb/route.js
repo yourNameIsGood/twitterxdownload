@@ -46,8 +46,20 @@ export async function GET(request) {
       allData = result[0].data;
       count = result[0].count[0]?.total || 0;
     } else if (action === 'all') {
-      allData = await Tweets.find({ ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } }).select('tweet_id post_at');
-      count = allData.length;
+      const yellow_keywords = ['chudai','mood','sexy'];
+      // tweet_text 字符串不能包含yellow_keywords中的任何一个字符串
+      allData = await Tweets.find({ 
+        ...baseFilter,
+        is_hidden: { $ne: 1 }, 
+        tweet_media: { $ne: null, $ne: '' }, 
+        tweet_text: { 
+          $not: { 
+            $regex: yellow_keywords.join('|'), 
+            $options: 'i' 
+          } 
+        } 
+      }).select('tweet_id post_at');
+count = allData.length;
     }else if (action === 'random') {
       allData = await Tweets.aggregate([
         { $match: baseFilter },
