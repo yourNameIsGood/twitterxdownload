@@ -82,7 +82,7 @@ export default function RePublishPanel({ locale ='en',tweets,onClose }) {
             const response = await aTweet.send();
 
             if(!response.data){
-                setPublishNotice(`Error：${response.detail || 'Post Forbidden'}`);
+                showPublishNotice(`Error：${response.detail || 'Post Forbidden'}`);
                 break;
             }
             successCount++;
