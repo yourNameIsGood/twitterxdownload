@@ -3,6 +3,8 @@ import dbConnect from '@/lib/db';
 import Tweets from '@/lib/models/tweets';
 import Hiddens from '@/lib/models/hiddens';
 
+const HIDDEN_KEYWORDS_REGEX = process.env.HIDDEN_KEYWORDS? process.env.HIDDEN_KEYWORDS.replace(/,/g, '|') : '';
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
@@ -21,9 +23,14 @@ export async function GET(request) {
     await dbConnect();
 
     const hiddenAccounts = await Hiddens.find().select('screen_name');
-    const hiddenScreenNames = hiddenAccounts.map(account => account.screen_name);
+    const hiddenScreenNames = hiddenAccounts.map(account => account.screen_name).join('|');
+    
     const baseFilter = {
-        screen_name: { $nin: [...hiddenScreenNames] }
+        screen_name: { $not: { $regex: hiddenScreenNames, $options: 'i' } },
+        name: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
+        tweet_text: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
+        is_hidden: { $ne: 1 }, 
+        tweet_media: { $ne: null, $ne: '' }
     };
 
     let allData;
@@ -33,7 +40,9 @@ export async function GET(request) {
         {
           $facet: {
             data: [
-              { $match: { ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } } },
+              { $match: { 
+                ...baseFilter
+              } },
               { $sort: { created_at: -1 } }, 
               { $limit: 15 }
             ],
@@ -46,16 +55,22 @@ export async function GET(request) {
       allData = result[0].data;
       count = result[0].count[0]?.total || 0;
     } else if (action === 'all') {
-      allData = await Tweets.find({ ...baseFilter,is_hidden: { $ne: 1 }, tweet_media: { $ne: null, $ne: '' } }).select('tweet_id post_at');
-      count = allData.length;
+      allData = await Tweets.find({ 
+        ...baseFilter
+      }).select('tweet_id post_at');
+count = allData.length;
     }else if (action === 'random') {
       allData = await Tweets.aggregate([
-        { $match: baseFilter },
+        { $match: {
+          ...baseFilter
+        } },
         { $sample: { size: 10 } }
       ]);
     } else if (action === 'creators') {
       allData = await Tweets.aggregate([
-        { $match: baseFilter },
+        { $match: {
+          ...baseFilter
+        } },
         { $group: {
           _id: "$screen_name", 
           count: { $sum: 1 },

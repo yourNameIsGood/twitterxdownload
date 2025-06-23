@@ -1,13 +1,17 @@
 import { Card, CardFooter, CardHeader, Button, Avatar, Skeleton,ScrollShadow } from "@heroui/react";
 import { getTranslation } from "@/lib/i18n";
 import Link from 'next/link';
+import { headers } from 'next/headers'
 
 export default async function HotCreators({ locale = 'en' }) {
     const t = function (key) {
         return getTranslation(locale, key);
     }
     
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const headersList = await headers()
+    const host = headersList.get('host')
+    const protocol = headersList.get('x-forwarded-proto') || 'http'
+    const baseUrl = `${protocol}://${host}`
     const creatorsResp = await fetch(`${baseUrl}/api/requestdb?action=creators`,{
         cache: 'no-store'
     });
