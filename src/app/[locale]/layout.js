@@ -17,6 +17,7 @@ export const metadata = {
   keywords: 'twitter downloader, x video downloader, twitter video download, x.com downloader',
   authors: [{ name: 'TwitterXDownload' }],
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  "google-site-verification":"7sdKn_2NRRlFtsl-umfnakB_-ENTvC_7Dj5drY_dOAU",
   alternates: {
     canonical: 'https://twitterxdownload.com/',
   },
