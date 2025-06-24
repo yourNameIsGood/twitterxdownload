@@ -12,6 +12,7 @@ export default async function HotTweets({ locale = 'en' }) {
     const host = headersList.get('host')
     const protocol = headersList.get('x-forwarded-proto') || 'http'
     const baseUrl = `${protocol}://${host}`
+    console.log('BASEURL ==================:', baseUrl);
     const tweetsResp = await fetch(`${baseUrl}/api/requestdb?action=recent`,{
         cache: 'no-store'
     });

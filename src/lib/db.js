@@ -13,7 +13,8 @@ async function dbConnect() {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-      console.log('✅ DB Connected');
+      // console.log('✅ DB Connected');
+      console.log('DB Connected:', MONGODB_URI);
       return mongoose;
     });
   }

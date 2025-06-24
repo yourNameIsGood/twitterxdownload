@@ -10,7 +10,7 @@ export async function GET(request) {
   const action = searchParams.get('action');
   
   if(process.env.NEXT_PUBLIC_USE_SHARED_DB=='1'){
-    const response = await fetch(`https://www.thetwittermarketingblog.com/api/requestdb?${action?`action=${action}`:''}`);
+    const response = await fetch(`https://api.twitterxdownload.com/api/requestdb?${action?`action=${action}`:''}`);
     const data = await response.json();
     
     return Response.json({
@@ -20,18 +20,22 @@ export async function GET(request) {
   }
 
   try {
+    console.log('START IN route.js: action=', action);
     await dbConnect();
 
     const hiddenAccounts = await Hiddens.find().select('screen_name');
+    console.log('hiddenAccounts:', hiddenAccounts);
     const hiddenScreenNames = hiddenAccounts.map(account => account.screen_name).join('|');
+    console.log('hiddenScreenNames:', hiddenScreenNames);
     
     const baseFilter = {
-        screen_name: { $not: { $regex: hiddenScreenNames, $options: 'i' } },
-        name: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
-        tweet_text: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
+        // screen_name: { $not: { $regex: hiddenScreenNames, $options: 'i' } },
+        // name: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
+        // tweet_text: { $not: { $regex: HIDDEN_KEYWORDS_REGEX, $options: 'i' } },
         is_hidden: { $ne: 1 }, 
         tweet_media: { $ne: null, $ne: '' }
     };
+    console.log('baseFilter:', baseFilter);
 
     let allData;
     let count = 0;
@@ -52,6 +56,7 @@ export async function GET(request) {
           }
         }
       ]);
+      console.log('result:', result);
       allData = result[0].data;
       count = result[0].count[0]?.total || 0;
     } else if (action === 'all') {
