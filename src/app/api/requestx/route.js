@@ -24,6 +24,7 @@ export async function GET(request) {
 
     try {
         await dbConnect();
+        // console.log('start, Tweet ID:', tweet_id);
         const tweet = await Tweets.findOne({ tweet_id: tweet_id });
         if (tweet) {
             return Response.json({
@@ -32,6 +33,7 @@ export async function GET(request) {
                 data: JSON.parse(tweet.tweet_data)
             });
         }
+        // console.log('end, Tweet:', tweet);
 
         const response = await fetch(`https://api.twitterxdownload.com/api/requestx?tweet_id=${tweet_id}`, {
             method: 'GET',
@@ -42,6 +44,7 @@ export async function GET(request) {
         }
 
         const respData = await response.json();
+        // console.log('API Response Data:', respData);
 
         // 保存到数据库
         // name
@@ -56,6 +59,7 @@ export async function GET(request) {
 
         // 获取推文数据
         const resultTweet = respData.data.data.threaded_conversation_with_injections_v2.instructions[0].entries[0].content.itemContent.tweet_results.result;
+        // console.log('resultTweet:', resultTweet);
         
         // 获取主推文数据
         const first_tweet = resultTweet.legacy || resultTweet.tweet.legacy;
@@ -91,8 +95,12 @@ export async function GET(request) {
             
             tweet_media = media_urls.join(',');
         }
+        // console.log('tweet_media:', tweet_media);
 
-        const card = resultTweet.card || resultTweet.tweet.card;
+        // console.log("gonna get card")
+        const card = resultTweet.card || (resultTweet.tweet ? resultTweet.tweet.card : undefined);
+        // console.log('card:', card);
+
         if(card && card.legacy&&card.legacy.binding_values){
             const value = card.legacy.binding_values[0].value.string_value;
             const valueJson = JSON.parse(value);
