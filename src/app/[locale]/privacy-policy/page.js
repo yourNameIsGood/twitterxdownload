@@ -10,17 +10,17 @@ export default function CurrentPage() {
                     </p>
                     
                     <p className="text-sm text-gray-500 mb-8">
-                        Last Updated: May 15, 2024
+                        Last Updated: June 15, 2025
                     </p>
                     
                     <div className="space-y-8">
                         <section>
                             <p className="mb-4">
-                                At TwitterXDownload, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service to download videos and media content from Twitter (now X).
+                                At TwitterMarketingTool, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service to download videos and media content from Twitter (now X).
                             </p>
                             
                             <p className="mb-6">
-                                By using TwitterXDownload, you agree to the collection and use of information in accordance with this policy.
+                                By using TwitterMarketingTool, you agree to the collection and use of information in accordance with this policy.
                             </p>
                         </section>
 
@@ -103,7 +103,7 @@ export default function CurrentPage() {
                             <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
                             <p className="mb-4">If you have any questions about this Privacy Policy, please contact us:</p>
                             <ul className="list-disc pl-6 space-y-2 mb-4">
-                                <li>By email: support@twitterxdownload.com</li>
+                                <li>By email: support@TwitterMarketingTool.com</li>
                                 <li>By visiting the contact section on our website</li>
                             </ul>
                         </section>

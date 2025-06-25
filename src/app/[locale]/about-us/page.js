@@ -13,13 +13,13 @@ export default function CurrentPage() {
             <div className="section">
                 <div className="w-full mx-auto">
                     <p className="text-lg leading-relaxed mb-6">
-                        TwitterXDownload was founded in 2022 by a group of tech enthusiasts who were frustrated with the limitations of downloading content from Twitter (now X). What started as a simple side project has grown into a trusted platform used by millions of users worldwide.
+                        TwitterMarketingTool was founded in 2025 by a group of tech enthusiasts who were frustrated with the limitations of downloading content from Twitter (now X). What started as a simple side project has grown into a trusted platform used by millions of users worldwide.
                     </p>
                     <p className="text-lg leading-relaxed mb-6">
                         Our mission is to provide a seamless, user-friendly experience for downloading Twitter videos and media content. We believe that content creators should have the ability to save and share their work across different platforms without restrictions.
                     </p>
                     <p className="text-lg leading-relaxed mb-6">
-                        Unlike other services, we've built TwitterXDownload with privacy and user experience in mind. We don't collect unnecessary data, we don't require registration, and we don't bombard users with ads. Our focus is solely on providing the best possible download experience.
+                        Unlike other services, we've built TwitterMarketingTool with privacy and user experience in mind. We don't collect unnecessary data, we don't require registration, and we don't bombard users with ads. Our focus is solely on providing the best possible download experience.
                     </p>
                     <p className="text-lg leading-relaxed">
                         As Twitter continues to evolve, we're committed to staying ahead of the curve and ensuring our service remains reliable and efficient. Our team of developers works tirelessly to update our algorithms and maintain compatibility with the latest Twitter features.
